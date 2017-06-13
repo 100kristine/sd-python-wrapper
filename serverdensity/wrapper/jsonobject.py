@@ -73,7 +73,7 @@ class JsonObject(Mapping):
                 self._validation(kwargs)
             else:
                 kwargs.pop('delete')
-                self._validation(kwargs)
+                self._data.update(kwargs)
         if arrgs:
             for arg in arrgs:
                 if isinstance(arg, dict):

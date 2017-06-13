@@ -68,8 +68,12 @@ class JsonObject(Mapping):
         else:
             self.api = api
         if kwargs:
-            self._data.update(kwargs)
-            self._validation(kwargs)
+            if 'delete' not in kwargs:
+                self._data.update(kwargs)
+                self._validation(kwargs)
+            else:
+                kwargs.pop('delete')
+                self._validation(kwargs)
         if arrgs:
             for arg in arrgs:
                 if isinstance(arg, dict):

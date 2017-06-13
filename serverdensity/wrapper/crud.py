@@ -14,7 +14,8 @@ class CRUD(object):
     def delete(self, _id=None, **kwargs):
         if not _id:
             _id = self._id
-        return self.__class__(self.api.delete(url=self.PATHS['delete'].format(_id), **kwargs))
+
+        return self.__class__(self.api.delete(url=self.PATHS['delete'].format(_id), **dict(kwargs, 'delete'=True))
 
     def list(self, **kwargs):
         result = self.api.get(url=self.PATHS['list'], **kwargs)
